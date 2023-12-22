@@ -1,4 +1,5 @@
-import 'package:core_soft_meeting/screens/HomePage.dart';
+import 'package:core_soft_meeting/screens/home_page.dart';
+import 'package:core_soft_meeting/screens/profile_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -12,6 +13,12 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
+        '/profile': (context) => ProfilePage(
+          firstName: 'Sebastian',
+          lastName: 'Padilla',
+          email: 'padillasebastian140@gmail.com',
+          role: 'Usuario',
+        ),
       },
     );
   }

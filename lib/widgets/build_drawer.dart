@@ -1,10 +1,17 @@
+import 'package:core_soft_meeting/share_preferens/user_preferences.dart';
 import 'package:flutter/material.dart';
+
+import '../config/navigation/application_routes.dart';
+import '../screens/index.dart';
 
 class BuildDrawer extends StatelessWidget {
   const BuildDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Datos Usuario Shared Preferences
+    final prefs = UserPreferences();
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -24,14 +31,14 @@ class BuildDrawer extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Nombre del Usuario',
+                  prefs.nombre,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: MediaQuery.of(context).size.width < 600 ? 14 : 18,
                   ),
                 ),
                 Text(
-                  'usuario@email.com',
+                  prefs.email,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: MediaQuery.of(context).size.width < 600 ? 12 : 16,
@@ -52,13 +59,31 @@ class BuildDrawer extends StatelessWidget {
             title: const Text('Perfil'),
             onTap: () {
               Navigator.pop(context);
-              Navigator.pushNamed(context, '/profile');
+              /*  Navigator.pushNamed(context, '/profile', arguments: {
+                'firstName': prefs.nombre,
+                'lastName': prefs.apellido,
+                'email': prefs.email,
+                'role': prefs.role,
+              }); */
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(
+                    firstName: prefs.nombre,
+                    lastName: prefs.apellido,
+                    email: prefs.email,
+                    role: prefs.role == 'admin' ? 'Administrador' : 'Usuario',
+                  ),
+                ),
+              );
             },
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app, color: Colors.black),
             title: const Text('Cerrar Sesión'),
             onTap: () {
+              prefs.clearUser();
+              Navigator.pushReplacementNamed(context, Routes.login);
             },
           ),
         ],

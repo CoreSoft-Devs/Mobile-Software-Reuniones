@@ -59,12 +59,6 @@ class BuildDrawer extends StatelessWidget {
             title: const Text('Perfil'),
             onTap: () {
               Navigator.pop(context);
-              /*  Navigator.pushNamed(context, '/profile', arguments: {
-                'firstName': prefs.nombre,
-                'lastName': prefs.apellido,
-                'email': prefs.email,
-                'role': prefs.role,
-              }); */
               Navigator.push(
                 context,
                 MaterialPageRoute(

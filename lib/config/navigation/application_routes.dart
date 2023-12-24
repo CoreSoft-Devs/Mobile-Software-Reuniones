@@ -17,11 +17,5 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
         ? const LoginPage()
         : const HomePage(), // Si no hay token, redirige a login
     Routes.home: (context) => const HomePage(),
-    /* Routes.profile: (context) => ProfilePage(
-          firstName: 'Sebastian',
-          lastName: 'Padilla',
-          email: 'padillasebastian140@gmail.com',
-          role: 'Usuario',
-        ), */
   };
 }

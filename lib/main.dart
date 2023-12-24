@@ -29,15 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Reuniones - CoreSoft',
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      routes: /* {
-        '/': (context) => const HomePage(),
-        '/profile': (context) => ProfilePage(
-          firstName: 'Sebastian',
-          lastName: 'Padilla',
-          email: 'padillasebastian140@gmail.com',
-          role: 'Usuario',
-        ),
-      } */
+      routes:
           getApplicationRoutes(),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:core_soft_meeting/share_preferens/user_preferences.dart';
 import 'package:flutter/material.dart';
+import '../config/constants/index.dart';
 
 import '../config/navigation/application_routes.dart';
 import '../screens/index.dart';
@@ -9,7 +10,6 @@ class BuildDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Datos Usuario Shared Preferences
     final prefs = UserPreferences();
 
     return Drawer(
@@ -18,7 +18,7 @@ class BuildDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 10, 40, 66),
+              color: black,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -33,14 +33,14 @@ class BuildDrawer extends StatelessWidget {
                 Text(
                   prefs.nombre,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: white,
                     fontSize: MediaQuery.of(context).size.width < 600 ? 14 : 18,
                   ),
                 ),
                 Text(
                   prefs.email,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: white,
                     fontSize: MediaQuery.of(context).size.width < 600 ? 12 : 16,
                   ),
                 ),
@@ -48,14 +48,14 @@ class BuildDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.home, color: Colors.black),
+            leading: const Icon(Icons.home_outlined, color: black),
             title: const Text('Inicio'),
             onTap: () {
               Navigator.pop(context);
             },
           ),
           ListTile(
-            leading: const Icon(Icons.person, color: Colors.black),
+            leading: const Icon(Icons.person_outline, color: black),
             title: const Text('Perfil'),
             onTap: () {
               Navigator.pop(context);
@@ -73,7 +73,7 @@ class BuildDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.exit_to_app, color: Colors.black),
+            leading: const Icon(Icons.exit_to_app, color: black),
             title: const Text('Cerrar Sesión'),
             onTap: () {
               prefs.clearUser();

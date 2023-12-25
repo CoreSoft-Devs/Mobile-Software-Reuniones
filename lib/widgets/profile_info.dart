@@ -1,3 +1,4 @@
+import 'package:core_soft_meeting/config/constants/index.dart';
 import 'package:flutter/material.dart';
 
 class ProfileInfo extends StatelessWidget {
@@ -17,6 +18,7 @@ class ProfileInfo extends StatelessWidget {
         double valueFontSize = availableWidth * 0.05;
 
         return Card(
+          color: black,
           elevation: 3,
           margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Padding(
@@ -37,14 +39,16 @@ class ProfileInfo extends StatelessWidget {
                         label,
                         style: TextStyle(
                           fontSize: labelFontSize,
-                          color: Colors.grey,
+                          color: white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         value,
-                        style: TextStyle(fontSize: valueFontSize),
+                        style: TextStyle(
+                          fontSize: valueFontSize,
+                          color: white),
                       ),
                     ],
                   ),

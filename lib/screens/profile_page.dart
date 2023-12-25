@@ -1,3 +1,4 @@
+import 'package:core_soft_meeting/config/constants/index.dart';
 import 'package:flutter/material.dart';
 import '../widgets/profile_info.dart';
 
@@ -43,17 +44,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 ProfileInfo(
                   label: 'Nombre',
                   value: '${widget.firstName} ${widget.lastName}',
-                  leading: const Icon(Icons.person),
+                  leading: const Icon(Icons.person_outline, color: white),
                 ),
                 ProfileInfo(
                   label: 'Email',
                   value: widget.email,
-                  leading: const Icon(Icons.email),
+                  leading: const Icon(Icons.email_outlined, color: white),
                 ),
                 ProfileInfo(
                   label: 'Rol',
                   value: widget.role,
-                  leading: const Icon(Icons.work),
+                  leading: const Icon(Icons.work_outline, color: white),
                 ),
               ],
             ),
@@ -82,7 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget buildCoverImage() => Container(
         color: Colors.grey,
         child: Image.asset(
-          'assets/images/background_image.jpg',
+          'assets/images/fondo.jpeg',
           width: double.infinity,
           height: coverHeight,
           fit: BoxFit.cover,

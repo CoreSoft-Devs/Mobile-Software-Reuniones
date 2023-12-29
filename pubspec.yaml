@@ -30,11 +30,15 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
+  date_picker_timeline: ^1.2.5
   dio: ^5.4.0
   firebase_core: ^2.24.2
   firebase_messaging: ^14.7.9
   flutter:
     sdk: flutter
+  flutter_staggered_animations: ^1.1.1
+  google_fonts: ^6.1.0
+  intl: ^0.18.1
   shared_preferences: ^2.2.2
 
 dev_dependencies:

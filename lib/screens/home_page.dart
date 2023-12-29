@@ -1,6 +1,5 @@
 import 'package:core_soft_meeting/config/constants/index.dart';
 import 'package:core_soft_meeting/widgets/index.dart';
-import 'package:core_soft_meeting/widgets/meeting_tile.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';

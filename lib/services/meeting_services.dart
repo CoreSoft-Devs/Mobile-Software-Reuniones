@@ -6,7 +6,7 @@ class MeetingServices {
   Future<List<Map<String, dynamic>>> getAllMeetings(DateTime date) async {
     try {
       final formattedDate = DateFormat('yyyy-MM-dd').format(date);
-      final response = await DioConfig.dio.get(
+      final response = await DioConfig.dioWithAuthorization.get(
         '/api/reunion/all',
         queryParameters: {
           'value': formattedDate,

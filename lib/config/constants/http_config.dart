@@ -15,11 +15,23 @@ class DioConfig {
 
   static const String contentType = 'application/json; charset=UTF-8';
 
-  static final dio = Dio(BaseOptions(
-      baseUrl: baseUrl,
-      connectTimeout: const Duration(seconds: 60),
-      receiveTimeout: const Duration(seconds: 60),
-      sendTimeout: const Duration(seconds: 60),
-      headers: getHeaders(),
-      contentType: contentType));
+  static final dioWithoutAuthorization = Dio(BaseOptions(
+    baseUrl: baseUrl,
+    connectTimeout: const Duration(seconds: 60),
+    receiveTimeout: const Duration(seconds: 60),
+    sendTimeout: const Duration(seconds: 60),
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    contentType: contentType,
+  ));
+
+  static final dioWithAuthorization = Dio(BaseOptions(
+    baseUrl: baseUrl,
+    connectTimeout: const Duration(seconds: 60),
+    receiveTimeout: const Duration(seconds: 60),
+    sendTimeout: const Duration(seconds: 60),
+    headers: getHeaders(),
+    contentType: contentType,
+  ));
 }

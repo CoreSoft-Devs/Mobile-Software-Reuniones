@@ -6,7 +6,7 @@ import 'package:core_soft_meeting/share_preferens/user_preferences.dart';
 class AuthServices {
   Future<String> postLogin(String email, String password) async {
     try {
-      final response = await DioConfig.dio.post('/api/login', data: {
+      final response = await DioConfig.dioWithoutAuthorization.post('/api/login', data: {
         'email': email,
         'password': password,
       });

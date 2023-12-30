@@ -56,8 +56,24 @@ class LoginPageState extends State<LoginPage> {
         if (token != null) {
           //? Logina para mandar el token mobile
           // Si todo sale bien
-          if (mounted) {
-            Navigator.pushReplacementNamed(context, Routes.home);
+          final hash2 = await authServices.updateUserToken(
+            token,
+            passwordController.text,
+          );
+          if (hash2.isNotEmpty) {
+            if (mounted) {
+              Navigator.pushReplacementNamed(context, Routes.home);
+            }
+          } else {
+            // Si la respuesta de postLogin es vacía
+            // Muestra una alerta indicando que la autenticación falló
+            if (mounted) {
+              CustomDialog.showErrorDialog(
+                context,
+                "Error de autenticación",
+                "Las credenciales son incorrectas.",
+              );
+            }
           }
         }
       } else {
@@ -178,7 +194,7 @@ class LoginPageState extends State<LoginPage> {
                         TextButton(
                           onPressed: () {
                             Navigator.pushReplacementNamed(
-                                context, Routes.login);
+                                context, Routes.register);
                           },
                           child: const Text("Regístrate"),
                         ),

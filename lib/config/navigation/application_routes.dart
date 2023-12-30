@@ -5,6 +5,7 @@ import '../../share_preferens/user_preferences.dart';
 
 class Routes {
   static const String login = '/login';
+  static const String register = '/register';
   static const String home = '/home';
   static const String profile = '/profile';
 }
@@ -17,5 +18,6 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
         ? const LoginPage()
         : const HomePage(), // Si no hay token, redirige a login
     Routes.home: (context) => const HomePage(),
+    Routes.register: (context) => const RegisterPage(),
   };
 }

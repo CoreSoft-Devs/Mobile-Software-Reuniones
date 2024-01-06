@@ -1,3 +1,4 @@
+import 'package:core_soft_meeting/config/constants/index.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -32,16 +33,32 @@ class _CustomTextFieldState extends State<CustomTextField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextField(
+          style: const TextStyle(fontSize: 14, color: black),
           controller: widget.controller,
           obscureText: widget.isPassword && isObscureText,
           onChanged: widget.onChanged, // Pasar onChanged al TextField
           decoration: InputDecoration(
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: black),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: black),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: black),
+            ),
             labelText: widget.placeholder,
+            labelStyle: const TextStyle(fontSize: 14, color: black),
             prefixIcon: widget.leftIcon != null ? Icon(widget.leftIcon) : null,
             suffixIcon: widget.isPassword
                 ? IconButton(
                     icon: Icon(
-                      isObscureText ? Icons.visibility : Icons.visibility_off,
+                      isObscureText ? Icons.visibility_off : Icons.visibility,
                     ),
                     onPressed: () {
                       setState(() {

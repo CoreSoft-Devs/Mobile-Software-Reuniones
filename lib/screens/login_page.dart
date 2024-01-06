@@ -1,3 +1,4 @@
+import 'package:core_soft_meeting/config/constants/index.dart';
 import 'package:core_soft_meeting/services/index.dart';
 import 'package:core_soft_meeting/widgets/index.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -63,6 +64,11 @@ class LoginPageState extends State<LoginPage> {
           if (hash2.isNotEmpty) {
             if (mounted) {
               Navigator.pushReplacementNamed(context, Routes.home);
+              CustomDialog.showSuccessDialog(
+                context,
+                "¡Bienvenido!",
+                "Has iniciado sesión correctamente.",
+              );
             }
           } else {
             // Si la respuesta de postLogin es vacía
@@ -89,12 +95,20 @@ class LoginPageState extends State<LoginPage> {
       }
     } catch (e) {
       // Si ocurre un error en las solicitudes, muestra una alerta genérica
-      if (mounted) {
-        CustomDialog.showErrorDialog(
-          context,
-          "Error",
-          "Hubo un problema al procesar tu solicitud.",
-        );
+      String message = e.toString();
+      String title = "Error";
+      String content = "Hubo un problema al procesar tu solicitud.";
+      String error = message.substring(10, message.length - 1);
+      if (error == " Usuario o contraseña incorrecto") {
+        title = "Error de autenticación";
+        content = "Las credenciales son incorrectas.";
+        if (mounted) {
+          CustomDialog.showErrorDialog(context, title, content);
+        }
+      } else {
+        if (mounted) {
+          CustomDialog.showErrorDialog(context, title, content);
+        }
       }
     } finally {
       setState(() {
@@ -174,7 +188,8 @@ class LoginPageState extends State<LoginPage> {
                       alignment: Alignment.topRight,
                       child: TextButton(
                         onPressed: () {},
-                        child: Text(forgotPasswordText),
+                        child: Text(forgotPasswordText,
+                            style: const TextStyle(color: black)),
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -182,10 +197,17 @@ class LoginPageState extends State<LoginPage> {
                       width: double.infinity,
                       height: 44,
                       child: ElevatedButton(
-                        onPressed:
-                            validEmail && validPassword ? onLoginTap : null,
-                        child: Text(loginButtonText),
-                      ),
+                          onPressed:
+                              validEmail && validPassword ? onLoginTap : null,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          child: Text(loginButtonText,
+                              style:
+                                  const TextStyle(fontSize: 16, color: white))),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -196,7 +218,8 @@ class LoginPageState extends State<LoginPage> {
                             Navigator.pushReplacementNamed(
                                 context, Routes.register);
                           },
-                          child: const Text("Regístrate"),
+                          child: const Text("Regístrate",
+                              style: TextStyle(color: black)),
                         ),
                       ],
                     ),
@@ -212,7 +235,9 @@ class LoginPageState extends State<LoginPage> {
             Container(
               color: Colors.black.withOpacity(0.5),
               child: const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: black,
+                ),
               ),
             )
         ],

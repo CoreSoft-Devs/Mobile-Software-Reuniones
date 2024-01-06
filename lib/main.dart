@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
-
 import 'config/navigation/application_routes.dart';
 import 'share_preferens/user_preferences.dart';
 
@@ -33,9 +32,7 @@ class MyApp extends StatelessWidget {
       title: 'Reuniones - CoreSoft',
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      
-      routes:
-          getApplicationRoutes(),
+      routes: getApplicationRoutes(),
     );
   }
 }

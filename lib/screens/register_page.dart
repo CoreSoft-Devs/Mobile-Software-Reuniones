@@ -1,3 +1,4 @@
+import 'package:core_soft_meeting/config/constants/index.dart';
 import 'package:core_soft_meeting/services/index.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool validPassword = false;
   bool validName = false;
   bool validLastName = false;
-  bool validRole = false;
+  /* bool validRole = false; */
 
   final String welcomeText = '¡Bienvenido!';
   final String signInText = 'Por favor, regístrate para continuar.';
@@ -93,6 +94,11 @@ class _RegisterPageState extends State<RegisterPage> {
             // Si todo sale bien
             if (mounted) {
               Navigator.pushReplacementNamed(context, Routes.home);
+              CustomDialog.showSuccessDialog(
+                context,
+                "¡Bienvenido!",
+                "Has iniciado sesión correctamente.",
+              );
             }
           } else {
             if (mounted) {
@@ -213,15 +219,15 @@ class _RegisterPageState extends State<RegisterPage> {
                         icon: const Icon(Icons.arrow_downward),
                         iconSize: 24,
                         elevation: 16,
-                        style: const TextStyle(color: Colors.deepPurple),
+                        style: const TextStyle(color: black),
                         underline: Container(
                           height: 2,
-                          color: Colors.deepPurpleAccent,
+                          color: black,
                         ),
                         onChanged: (String? newValue) {
                           setState(() {
                             role.text = newValue!;
-                            validRole = true;
+                            /* validRole = true; */
                           });
                         },
                         items: <String>['Administrador', 'Basico']
@@ -243,11 +249,19 @@ class _RegisterPageState extends State<RegisterPage> {
                           onPressed: validEmail &&
                                   validPassword &&
                                   validName &&
-                                  validLastName &&
-                                  validRole
+                                  validLastName /* &&
+                                  validRole */
                               ? onRegisterTap
                               : null,
-                          child: Text(registerButtonText),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                          ),
+                          child: Text(registerButtonText,
+                              style:
+                                  const TextStyle(fontSize: 16, color: white)),
                         ),
                       ),
                       Row(
@@ -259,7 +273,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               Navigator.pushReplacementNamed(
                                   context, Routes.login);
                             },
-                            child: const Text("Inicia Sesión"),
+                            child: const Text("Inicia Sesión",
+                                style: TextStyle(color: black)),
                           ),
                         ],
                       ),
@@ -276,7 +291,9 @@ class _RegisterPageState extends State<RegisterPage> {
             Container(
               color: Colors.black.withOpacity(0.5),
               child: const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: black,
+                ),
               ),
             )
         ],

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 
 import 'package:core_soft_meeting/config/constants/http_config.dart';
 import 'package:core_soft_meeting/share_preferens/user_preferences.dart';
@@ -6,7 +7,8 @@ import 'package:core_soft_meeting/share_preferens/user_preferences.dart';
 class AuthServices {
   Future<String> postLogin(String email, String password) async {
     try {
-      final response = await DioConfig.dioWithoutAuthorization.post('/api/login', data: {
+      final response =
+          await DioConfig.dioWithoutAuthorization.post('/api/login', data: {
         'email': email,
         'password': password,
       });
@@ -18,8 +20,8 @@ class AuthServices {
       } else {
         throw Exception('Error en la solicitud');
       }
-    } catch (e) {
-      throw Exception('Error en la solicitud: $e');
+    } on DioException catch (e) {
+      throw Exception(e.response!.data['message']);
     }
   }
 
@@ -37,7 +39,8 @@ class AuthServices {
       role = 'basic';
     }
     try {
-      final response = await DioConfig.dio.post('/api/register', data: {
+      final response =
+          await DioConfig.dioWithoutAuthorization.post('/api/register', data: {
         'nombre': firstName,
         'apellido': lastName,
         'email': email,
@@ -61,9 +64,8 @@ class AuthServices {
   Future<String> updateUserToken(String tokenMobile, String password) async {
     try {
       String id = UserPreferences().id;
-      DioConfig.dio.options.headers['Authorization'] =
-          'Bearer ${UserPreferences().token}';
-      final response = await DioConfig.dio.patch('/api/user/$id', data: {
+      final response =
+          await DioConfig.dioWithAuthorization.patch('/api/user/$id', data: {
         'id': id,
         'nombre': UserPreferences().nombre,
         'apellido': UserPreferences().apellido,

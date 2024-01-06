@@ -8,6 +8,10 @@ class CustomDialog {
       builder: (context) => AlertDialog(
         title: Text(title),
         content: Text(content),
+        icon: const Icon(
+          Icons.error,
+          color: Colors.red,
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -25,6 +29,10 @@ class CustomDialog {
       builder: (context) => AlertDialog(
         title: Text(title),
         content: Text(content),
+        icon: const Icon(
+          Icons.check_circle,
+          color: Colors.green,
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
